@@ -1,4 +1,4 @@
-.contact-form {
+.search-form {
     width: 350px;
     margin: 0 auto;
     padding: 20px;
@@ -7,37 +7,6 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  .contact-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .contact-form input[type="text"],
-  .contact-form input[type="tel"],
-  .contact-form input[type="email"],
-  .contact-form textarea {
-    width: 328px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .contact-form button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .contact-form button:hover {
-    background-color: #0056b3;
-  }
   
   ul {
     list-style: none;
@@ -46,44 +15,15 @@
   .gallery{
     display: inline-block;
   }
-  .photo-card {
-    border: 1px solid #ccc;
+  
+  input {
+    background-color: #eee;
+    color: #333;
+    border: 2px solid #ccc;
     padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 400px;
-  }
-  img{
-    display: block;
-    max-width: 360px;
-  }
-  .info {
-    text-align: left;
-  }
+}
+ 
   
-  .card-name {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .card-phone {
-    font-size: 16px;
-    margin: 5px 0;
-  }
-  
-  .card-email {
-    font-size: 16px;
-    margin: 5px 0;
-    color: #007bff;
-  }
-  
-  .card-comment {
-    font-size: 14px;
-    margin: 10px 0;
-    color: #666;
-  }
   
   .is-hidden {
     position: absolute;
@@ -97,3 +37,85 @@
     clip: rect(0 0 0 0);
     overflow: hidden;
 }
+
+  .load-more-hidden {
+    display: none;
+  }
+  
+  .load-more, .seach-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+ .btn-load{
+   text-align:  center;
+ }
+  
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .load-more:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .load-more:disabled {
+    background-color: #c1c1c1;
+    cursor: not-allowed;
+  }
+  
+  .photo-card {
+    position: relative;
+    width: 300px;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .photo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .photo-card img {
+    width: 100%;
+  height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .info {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    text-align: center;
+  }
+ 
+  
+  .info p {
+    margin: 5px 0;
+    font-size: 12 px;
+    color: black;
+  }
+  .info-item{
+   line-height: 1.5;
+  }

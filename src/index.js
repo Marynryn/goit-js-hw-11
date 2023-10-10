@@ -15,7 +15,7 @@ const refs ={
 refs.list.addEventListener('submit', handleSumbit)
 
 
-  
+refs.btnLoadMore.classList.replace( "load-more","load-more-hidden");
     refs.btnLoadMore.addEventListener("click", onLoadMore);
 
 let page = 1
@@ -119,4 +119,7 @@ const params = new URLSearchParams ({
       </p>
     </div>
   </div>`
-    ).join("");}
+    ).join("");
+
+}
+refs.form.reset()
