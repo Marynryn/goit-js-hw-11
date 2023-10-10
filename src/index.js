@@ -12,56 +12,74 @@ const refs ={
     btnLoadMore:document.querySelector(".load-more"),
     gallery: document.querySelector(".gallery")
 }
-refs.list.addEventListener('submit', serviceSeach)
+refs.list.addEventListener('submit', handleSumbit)
 
-    let page = 1;
+
+  
     refs.btnLoadMore.addEventListener("click", onLoadMore);
 
-
+let page = 1
+ 
+function handleSumbit(event){
+    event.preventDefault()
+   refs.btnSeach.disabled = true
 
 
     serviceSeach()
-    .then((data) => {
-    makeMarkUp(data);
-    console.log(data);
-    console.log(data.hits);
-        // if (data.page < data.totalHits) {
-        //   refs.btnLoadMore.classList.replace("load-more-hidden", "load-more");
-        // }
+.then(({data}) => {
+    makeMarkUp(data.hits);
+    
+    Notify.success(`✅ Hooray! We found ${data.totalHits} images.`, {
+        position: 'center-center',
+        timeout: 2000,
+        width: '400px',
+        fontSize: '24px'
+    });
+
+        if (data.hits.length * page  < data.totalHits) {
+          refs.btnLoadMore.classList.replace("load-more-hidden", "load-more");
+        }
       })
       .catch((err) => console.log(err));
     
-
+}
       function onLoadMore({ target }) {
-        page += 1;
+        
+        page += 1;   
         target.disabled = true;
+   
+        serviceSeach(page)
+          .then(({data}) => {
+             makeMarkUp(data.hits);
       
-        serviceMovie(page)
-          .then((data) => {
-            refs.list.insertAdjacentHTML("beforeend", createMarkup(data.hits));
-      
-            // if (data.hits >= data.totalHits) {
-            //   refs.btnLoadMore.classList.replace("load-more", "load-more-hidden");
-            // }
+            if (data.hits.length * page >= data.totalHits) {
+              refs.btnLoadMore.classList.add("is-hidden");
+              
+    Notify.failure("We're sorry, but you've reached the end of search results.", {
+        position: 'center-center',
+        timeout: 2000,
+        width: '400px',
+        fontSize: '24px'
+    })
+            }
           })
           .catch((err) => console.log(err))
           .finally(() => (target.disabled = false));
       }
- function serviceSeach(page=1) {
-    
+ function serviceSeach() {
+    const formData = refs.list.elements.searchQuery.value;
 
 const params = new URLSearchParams ({
-    q : refs.list.searchQuery.value,
+    q : formData,
     image_type: "photo",
     orientation: "horizontal",
     safesearch: "true",
+    per_page: 40,
+    page,
+   
 } ) 
-
-
     return  axios.get(`${url}?key=${api_key}&${params}`)
-.then(( {data} ) => makeMarkUp(hits))
-      .catch(console.log);
-  
+
   }
 
   function makeMarkUp(hits){
@@ -74,7 +92,7 @@ const params = new URLSearchParams ({
         fontSize: '24px'
     })
   } else {
-    refs.gallery.innerHTML  =  createMarkup(hits);
+    refs.gallery.insertAdjacentHTML("beforeend", createMarkup(hits) ) ;
   }}
 
   function createMarkup(arr){
@@ -101,4 +119,4 @@ const params = new URLSearchParams ({
       </p>
     </div>
   </div>`
-    )}
+    ).join("");}
