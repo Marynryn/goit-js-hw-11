@@ -23,22 +23,8 @@
     padding: 10px;
 }
  
-  
-  
-  .is-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-}
 
-  .load-more-hidden {
+.load-more-hidden {
     display: none;
   }
   
@@ -73,11 +59,7 @@
     background-color: #0056b3;
     transform: scale(1.05);
   }
-  
-  .load-more:disabled {
-    background-color: #c1c1c1;
-    cursor: not-allowed;
-  }
+ 
   
   .photo-card {
     position: relative;
